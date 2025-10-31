@@ -3,7 +3,7 @@
  * Handles GUI window creation and management
  */
 
-const { app, BrowserWindow, Menu, ipcMain } = require('electron');
+const { app, BrowserWindow, Menu, ipcMain, shell } = require('electron');
 const path = require('path');
 
 let mainWindow;
@@ -20,8 +20,8 @@ function createWindow() {
       contextIsolation: true,
       preload: path.join(__dirname, 'preload.js')
     },
-    title: 'IDE3 - Development Environment',
-    icon: path.join(__dirname, 'assets', 'icon.png')
+    title: 'IDE3 - Development Environment'
+    // Note: icon path removed - add your own icon.png in src/gui/assets/ if needed
   });
 
   // Load the index.html
@@ -121,7 +121,11 @@ function createMenu() {
         {
           label: 'Documentation',
           click: () => {
-            require('electron').shell.openExternal('https://github.com/Kelushael/https-github.com-Kelushael-ide3');
+            const url = 'https://github.com/Kelushael/https-github.com-Kelushael-ide3';
+            // Validate URL before opening
+            if (url.startsWith('https://')) {
+              shell.openExternal(url);
+            }
           }
         },
         {

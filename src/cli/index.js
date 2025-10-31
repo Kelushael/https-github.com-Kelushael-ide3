@@ -54,14 +54,20 @@ function launchGUI(options) {
   const electronPath = path.join(__dirname, '../../src/gui/main.js');
   
   if (fs.existsSync(electronPath)) {
-    const electron = require('electron');
-    const proc = spawn(electron, [electronPath], {
-      stdio: 'inherit'
-    });
-    
-    proc.on('close', (code) => {
-      console.log(chalk.yellow(`GUI closed with code ${code}`));
-    });
+    try {
+      const electron = require('electron');
+      const proc = spawn(electron, [electronPath], {
+        stdio: 'inherit'
+      });
+      
+      proc.on('close', (code) => {
+        console.log(chalk.yellow(`GUI closed with code ${code}`));
+      });
+    } catch (error) {
+      console.log(chalk.red('Error: Electron is not installed.'));
+      console.log(chalk.gray('Install Electron: npm install electron'));
+      console.log(chalk.gray('Or run: npm run gui'));
+    }
   } else {
     console.log(chalk.yellow('Starting GUI interface...'));
     console.log(chalk.gray('GUI will open in a new window'));

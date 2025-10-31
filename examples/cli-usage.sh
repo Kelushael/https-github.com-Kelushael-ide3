@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # IDE3 CLI Usage Examples
 # This script demonstrates various CLI commands
