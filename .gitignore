@@ -43,3 +43,7 @@ coverage/
 
 # Optional eslint cache
 .eslintcache
+
+# Example project outputs
+my-projects/
+components/
