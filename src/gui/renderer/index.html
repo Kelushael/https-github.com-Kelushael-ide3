@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IDE3 - Development Environment</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <h1>IDE3</h1>
+        <span class="tagline">Development Environment</span>
+      </div>
+      <div class="actions">
+        <button class="btn btn-primary" id="newProjectBtn">New Project</button>
+        <button class="btn btn-secondary" id="openProjectBtn">Open Project</button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <nav class="sidebar-nav">
+          <h3>Quick Actions</h3>
+          <ul>
+            <li><a href="#" id="createComponentLink">Create Component</a></li>
+            <li><a href="#" id="buildProjectLink">Build Project</a></li>
+            <li><a href="#" id="serveProjectLink">Serve Project</a></li>
+            <li><a href="#" id="settingsLink">Settings</a></li>
+          </ul>
+        </nav>
+        
+        <div class="project-tree">
+          <h3>Project Structure</h3>
+          <div id="projectTreeView">
+            <p class="empty-state">No project loaded</p>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Editor Area -->
+      <section class="editor-area">
+        <div class="tabs">
+          <div class="tab active" data-tab="welcome">
+            <span>Welcome</span>
+          </div>
+        </div>
+        
+        <div class="editor-content">
+          <div class="welcome-screen" id="welcomeScreen">
+            <h2>Welcome to IDE3</h2>
+            <p>A powerful CLI tool with GUI creation capabilities</p>
+            
+            <div class="features">
+              <div class="feature-card">
+                <h3>🚀 Quick Start</h3>
+                <p>Create new projects with a single command</p>
+                <code>ide3 init my-project</code>
+              </div>
+              
+              <div class="feature-card">
+                <h3>🎨 GUI Components</h3>
+                <p>Generate UI components instantly</p>
+                <code>ide3 create component --name MyComponent</code>
+              </div>
+              
+              <div class="feature-card">
+                <h3>⚡ Build & Serve</h3>
+                <p>Build and serve your projects effortlessly</p>
+                <code>ide3 build && ide3 serve</code>
+              </div>
+              
+              <div class="feature-card">
+                <h3>💻 Multiple Languages</h3>
+                <p>Support for Node.js, C++, and HTML</p>
+                <code>Multi-language support built-in</code>
+              </div>
+            </div>
+            
+            <div class="getting-started">
+              <h3>Getting Started</h3>
+              <ol>
+                <li>Click "New Project" to create a new project</li>
+                <li>Or use "Open Project" to open an existing one</li>
+                <li>Use Quick Actions to manage your project</li>
+              </ol>
+            </div>
+          </div>
+          
+          <div class="editor" id="editorPane" style="display: none;">
+            <textarea id="codeEditor" placeholder="Start coding..."></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- Properties Panel -->
+      <aside class="properties-panel">
+        <h3>Properties</h3>
+        <div id="propertiesContent">
+          <p class="empty-state">Select an item to view properties</p>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Footer / Status Bar -->
+    <footer class="status-bar">
+      <div class="status-left">
+        <span id="statusMessage">Ready</span>
+      </div>
+      <div class="status-right">
+        <span id="projectInfo">No project</span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="renderer.js"></script>
+</body>
+</html>

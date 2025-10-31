@@ -1,0 +1,46 @@
+{
+  "name": "ide3",
+  "version": "1.0.0",
+  "description": "A powerful CLI tool with GUI creation capabilities for IDE development",
+  "main": "index.js",
+  "bin": {
+    "ide3": "./bin/ide3.js"
+  },
+  "scripts": {
+    "start": "node bin/ide3.js",
+    "gui": "electron src/gui/main.js",
+    "test": "echo \"No tests specified yet\" && exit 0",
+    "postinstall": "node scripts/postinstall.js",
+    "build-native": "node-gyp rebuild",
+    "install-native": "npm install node-addon-api node-gyp && npm run build-native"
+  },
+  "keywords": [
+    "cli",
+    "ide",
+    "gui",
+    "electron",
+    "development",
+    "tools"
+  ],
+  "author": "Kelushael",
+  "license": "MIT",
+  "preferGlobal": true,
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "commander": "^11.1.0",
+    "chalk": "^4.1.2",
+    "inquirer": "^8.2.5",
+    "electron": "^27.0.0"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {
+    "node-addon-api": "^7.0.0",
+    "node-gyp": "^10.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kelushael/https-github.com-Kelushael-ide3.git"
+  }
+}
