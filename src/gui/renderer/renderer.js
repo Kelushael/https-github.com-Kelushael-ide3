@@ -3,7 +3,12 @@
  * Handles UI interactions and IPC communication
  */
 
-const { ipcRenderer } = require('electron');
+// Use the secure electronAPI exposed via preload script
+const electronAPI = window.electronAPI || {
+  send: () => console.warn('electronAPI not available'),
+  on: () => console.warn('electronAPI not available'),
+  once: () => console.warn('electronAPI not available')
+};
 
 // DOM Elements
 const newProjectBtn = document.getElementById('newProjectBtn');
@@ -57,7 +62,7 @@ function handleCreateComponent() {
   const componentType = prompt('Enter component type (window/panel/dialog):', 'window');
   
   if (componentName) {
-    ipcRenderer.send('create-component', {
+    electronAPI.send('create-component', {
       name: componentName,
       type: componentType
     });
@@ -69,7 +74,7 @@ function handleCreateComponent() {
 function handleBuildProject() {
   updateStatus('Building project...');
   
-  ipcRenderer.send('build-project', {
+  electronAPI.send('build-project', {
     output: 'dist'
   });
   
@@ -133,7 +138,7 @@ function showNotification(title, message) {
 }
 
 // IPC Event Listeners
-ipcRenderer.on('menu-action', (event, action) => {
+electronAPI.on('menu-action', (action) => {
   console.log('[Menu Action]', action);
   
   switch (action) {
@@ -155,14 +160,14 @@ ipcRenderer.on('menu-action', (event, action) => {
   }
 });
 
-ipcRenderer.on('component-created', (event, result) => {
+electronAPI.on('component-created', (result) => {
   if (result.success) {
     updateStatus('Component created successfully!');
     showNotification('Success', `Component "${result.data.name}" created!`);
   }
 });
 
-ipcRenderer.on('project-built', (event, result) => {
+electronAPI.on('project-built', (result) => {
   if (result.success) {
     updateStatus('Project built successfully!');
     showNotification('Success', 'Build completed!');
